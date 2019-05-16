@@ -22,7 +22,6 @@ var reverse = function (x) {
     } else {
       x = Math.ceil(x / 10)
     }
-    // console.log(x)
   }
   if (result > Math.pow(2, 31) - 1 || result < -1 * Math.pow(2, 31) + 1) {
     return 0
