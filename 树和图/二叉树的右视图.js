@@ -12,7 +12,7 @@
  *   5     4       <---
  *  */
 
- /**
+/**
  * Definition for a binary tree node.
  * function TreeNode(val) {
  *     this.val = val;
@@ -24,26 +24,26 @@
  * @return {number[]}
  * 循环遍历
  */
-var rightSideView1 = function(root) {
+var rightSideView1 = function (root) {
   if (!root) {
-      return [];
+    return [];
   }
   const nodeArr = [root];
   const result = [];
-  while(nodeArr.length > 0) {
-      result.push(nodeArr[nodeArr.length - 1].val);
-      let len = nodeArr.length;
-      for(let i = 0; i < len; i++) {
-          let j = nodeArr.pop(); 
-          if (j.right) {
-              nodeArr.unshift(j.right);
-          }
-          if (j.left) {
-              nodeArr.unshift(j.left);
-          }
+  while (nodeArr.length > 0) {
+    result.push(nodeArr[nodeArr.length - 1].val);
+    let len = nodeArr.length;
+    for (let i = 0; i < len; i++) {
+      let j = nodeArr.pop();
+      if (j.right) {
+        nodeArr.unshift(j.right);
       }
+      if (j.left) {
+        nodeArr.unshift(j.left);
+      }
+    }
   }
-  return result ; 
+  return result;
 };
 
 /**
@@ -51,22 +51,23 @@ var rightSideView1 = function(root) {
  * @return {number[]}
  * 递归遍历
  */
-var rightSideView2 = function(root) {
+var rightSideView2 = function (root) {
   if (!root) {
-      return [];
+    return [];
   }
   const result = [];
-  function dfs (node, count) {
-      if (result.length < count) {
-          result.push(node.val);
-      } 
-      if (node.right) {
-          dfs(node.right, count + 1);
-      }
-      if (node.left) {
-          dfs(node.left, count + 1);
-      }
+
+  function dfs(node, count) {
+    if (result.length < count) {
+      result.push(node.val);
+    }
+    if (node.right) {
+      dfs(node.right, count + 1);
+    }
+    if (node.left) {
+      dfs(node.left, count + 1);
+    }
   }
   dfs(root, 1);
-  return result ; 
+  return result;
 };
